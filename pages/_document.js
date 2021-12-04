@@ -11,7 +11,7 @@ class MyDocument extends Document {
                     />
                     <title>LAIBA</title>
                 </Head>
-                <body style={{ fontFamily: 'Poppins' }}>
+                <body>
                     <Main />
                     <NextScript />
                 </body>
