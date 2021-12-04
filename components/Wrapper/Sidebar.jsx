@@ -1,7 +1,7 @@
 import React from 'react'
-import Heading1 from '../components/Typography/Heading1'
+import Heading1 from '../Typography/Heading1'
 import SidebarItem from './SidebarItem'
-import Text from './Typography/Text'
+import Text from '../Typography/Text'
 
 export default function Sidebar() {
     const [selected, setSelected] = React.useState(1)
