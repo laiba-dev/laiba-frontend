@@ -10,6 +10,7 @@ export default function Sidebar() {
         <div style={{
             position: 'absolute',
             width: '212px',
+            minHeight: '100vh',
             height: '100%',
             left: '0',
             top: '0',
@@ -35,7 +36,7 @@ export default function Sidebar() {
                     onSelected={() => setSelected(2)} />
                 <SidebarItem
                     icon="/images/bx_bxs-report.png"
-                    url="/submission"
+                    url="/submissions"
                     text="Hasil Pembelajaran"
                     active={selected == 3}
                     onSelected={() => setSelected(3)}

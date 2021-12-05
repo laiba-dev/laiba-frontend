@@ -14,15 +14,16 @@ export default function Header({ setCollapsed, name }) {
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
             display: 'flex',
             flexDirection: 'row',
+            paddingLeft: '20px',
             justifyContent: 'space-between',
-            padding: '20px',
+            alignItems: 'center',
             position: 'sticky'
         }}>
             <Image src="/images/ci_hamburger.png" alt="Sidebar Toggle" width="24px" height="24px" onClick={setCollapsed} />
             <div style={{ position: 'relative', display: 'inline-block' }}
                 onMouseEnter={() => setShowDropDown(true)}
                 onMouseLeave={() => setShowDropDown(false)}>
-                <Text>Hai, {name}</Text>
+                <div style={{ padding: '20px', cursor: 'pointer' }}><Text>Hai, {name}</Text></div>
                 <div style={{
                     display: showDropDown ? 'block' : 'none',
                     position: 'absolute',

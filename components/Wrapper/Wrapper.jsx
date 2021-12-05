@@ -10,11 +10,11 @@ export default function Wrapper({ children }) {
     switch (status) {
         case "authenticated":
             return (<div>
-                <Sidebar />
+                {!collapsed && (<Sidebar />)}
                 <div style={{
                     background: '#F8F9FF',
                     minHeight: '100vh',
-                    marginLeft: '212px'
+                    marginLeft: !collapsed ? '212px' : '0px'
                 }}>
                     <Header setCollapsed={() => { setCollapsed(!collapsed) }} name={session.user.name} />
                     <div style={{
