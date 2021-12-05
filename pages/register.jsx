@@ -7,10 +7,12 @@ import FormField from "../components/FormField";
 import { Text, Title } from "../components/Typography";
 
 export default function Register() {
-  const [nim, setNim] = React.useState(0);
-  const [nama, setNama] = React.useState("");
-  const [prodi, setProdi] = React.useState("");
-  const [username, setUsername] = React.useState("");
+  const [userData, setUserData] = React.useState({
+    nim: "",
+    nama: "",
+    prodi: "",
+    username: "mirfanrafif",
+  });
 
   return (
     <div style={{ width: "347px", margin: "auto" }}>
@@ -23,26 +25,34 @@ export default function Register() {
         <Divider />
         <FormField
           type="number"
-          value={nim}
-          onChange={(event) => setNim(event.target.value)}
+          value={userData.nim}
+          onChange={(event) =>
+            setUserData({ ...userData, nim: event.target.value })
+          }
           placeholder="NIM"
         />
         <FormField
           type="text"
-          value={nama}
-          onChange={(event) => setNama(event.target.value)}
+          value={userData.nama}
+          onChange={(event) =>
+            setUserData({ ...userData, nama: event.target.value })
+          }
           placeholder="Nama"
         />
         <FormField
           type="text"
-          value={prodi}
-          onChange={(event) => setProdi(event.target.value)}
+          value={userData.prodi}
+          onChange={(event) =>
+            setUserData({ ...userData, prodi: event.target.value })
+          }
           placeholder="Program Studi"
         />
         <FormField
           type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
+          value={userData.username}
+          onChange={(event) =>
+            setUserData({ ...userData, username: event.target.value })
+          }
           placeholder="Username Github"
           disabled
         />
