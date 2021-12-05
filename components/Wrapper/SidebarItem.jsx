@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Text from '../Typography/Text'
+import { Text } from '../Typography'
 import { color } from '../Color'
 
 export default function SidebarItem({ icon, text, url, active, onSelected }) {

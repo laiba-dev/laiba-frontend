@@ -1,7 +1,6 @@
 import React from 'react'
-import Heading1 from '../Typography/Heading1'
 import SidebarItem from './SidebarItem'
-import Text from '../Typography/Text'
+import { Text, Heading1 } from '../Typography'
 import { color } from '../Color'
 
 export default function Sidebar() {
@@ -25,7 +24,7 @@ export default function Sidebar() {
             <div>
                 <SidebarItem
                     icon="/images/bx_bxs-home.png"
-                    url="/dashboard"
+                    url="/"
                     text="Dashboard"
                     active={selected == 1}
                     onSelected={() => setSelected(1)} />

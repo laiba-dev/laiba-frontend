@@ -4,6 +4,7 @@ import { Text } from '../Typography'
 import DropdownItem from './DropdownItem'
 import { signOut } from 'next-auth/react'
 import { shadow } from '../Color'
+import DropdownContent from '../DropdownContent'
 
 export default function Header({ setCollapsed, name }) {
     const [showDropDown, setShowDropDown] = React.useState(false)
@@ -20,26 +21,22 @@ export default function Header({ setCollapsed, name }) {
             alignItems: 'center',
             position: 'sticky'
         }}>
-            <Image src="/images/ci_hamburger.png" alt="Sidebar Toggle" width="24px" height="24px" onClick={setCollapsed} />
+            <div style={{ cursor: 'pointer', paddingTop: '4px' }}>
+                <Image src="/images/ci_hamburger.png"
+                    alt="Sidebar Toggle"
+                    width="24px"
+                    height="24px"
+                    onClick={setCollapsed} />
+            </div>
             <div style={{ position: 'relative', display: 'inline-block' }}
                 onMouseEnter={() => setShowDropDown(true)}
                 onMouseLeave={() => setShowDropDown(false)}>
                 <div style={{ padding: '20px', cursor: 'pointer' }}>
                     <Text>Hai, {name}</Text>
                 </div>
-                <div style={{
-                    display: showDropDown ? 'block' : 'none',
-                    position: 'absolute',
-                    backgroundColor: 'white',
-                    minWidth: '160px',
-                    borderRadius: '4px',
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
-                    zIndex: '1',
-                    paddingTop: '4px',
-                    paddingBottom: '4px'
-                }}>
+                <DropdownContent showDropDown={showDropDown}>
                     <DropdownItem text="Logout" action={() => { signOut() }} />
-                </div>
+                </DropdownContent>
             </div>
         </div>
     )

@@ -1,11 +1,76 @@
-import TextComponent from "./Text"
-import TitleComponent from './Title'
-import Heading3Component from './Heading3'
-import Heading2Component from './Heading2'
-import Heading1Component from './Heading1'
 
-export const Text = TextComponent
-export const Title = TitleComponent
-export const Heading3 = Heading3Component
-export const Heading2 = Heading2Component
-export const Heading1 = Heading1Component
+
+export function Text({ color = "#202020", children }) {
+    return (
+        <div style={
+            {
+                color: color,
+                fontWeight: 'normal',
+                fontSize: '14px',
+                lineHeight: '21px',
+                margin: '0px'
+            }
+        } >
+            {children}
+        </div>
+    )
+}
+export function Title({ children }) {
+    return (
+        <div style={
+            {
+                color: '#202020',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '16px',
+                lineHeight: '24px',
+                margin: '0px'
+            }
+        } >
+            {children}
+        </div>
+    )
+}
+
+export function Heading3({ children }) {
+    return (
+        <div style={
+            {
+                color: '#202020',
+                fontWeight: '600',
+                fontSize: '20px',
+                lineHeight: '30px'
+            }
+        } >
+            {children}
+        </div>
+    )
+}
+export function Heading2({ text }) {
+    return (
+        <div style={
+            {
+                color: '#202020',
+                fontWeight: '600',
+                fontSize: '32px',
+                lineHeight: '48px'
+            }
+        } >
+            {text}
+        </div>
+    )
+}
+export function Heading1({ color = '#202020', children }) {
+    return (
+        <div style={
+            {
+                color: color,
+                fontWeight: '600',
+                fontSize: '48px',
+                lineHeight: '72px'
+            }
+        } >
+            {children}
+        </div>
+    )
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Text from '../Typography/Text'
+import { Text } from '../Typography'
 
 export default function DropdownItem({ text, action }) {
     const [hovered, setHovered] = useState(false)

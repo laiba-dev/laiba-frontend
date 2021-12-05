@@ -1,5 +1,5 @@
 import React from 'react'
-import Heading3 from '../components/Typography/Heading3'
+import { Heading3 } from '../components/Typography'
 
 export default function Submissions() {
     return (

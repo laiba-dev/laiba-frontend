@@ -1,4 +1,4 @@
-import Text from '../components/Typography/Text'
+import { Text } from '../components/Typography'
 import Head from 'next/head'
 
 export default function Home() {

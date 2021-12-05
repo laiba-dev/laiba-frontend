@@ -1,6 +1,6 @@
 import React from 'react'
 import PembelajaranCard from '../components/PembelajaranCard'
-import Heading3 from '../components/Typography/Heading3'
+import { Heading3 } from '../components/Typography'
 
 export default function Pembelajaran() {
     return (

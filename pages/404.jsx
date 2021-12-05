@@ -1,7 +1,6 @@
 import React from 'react'
 import Card from '../components/Card'
-import Text from '../components/Typography/Text'
-import Heading1 from '../components/Typography/Heading1'
+import { Heading1, Text } from '../components/Typography'
 
 export default function NotFound() {
     return (

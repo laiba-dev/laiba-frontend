@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Title from './Typography/Title'
-import Text from './Typography/Text'
+import { Title, Text } from './Typography'
 import Card from './Card'
 
 export default function PembelajaranCard({ id, image, title, desc }) {
