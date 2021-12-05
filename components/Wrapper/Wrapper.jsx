@@ -6,47 +6,57 @@ import Sidebar from "./Sidebar";
 
 export default function Wrapper({ children }) {
   const [collapsed, setCollapsed] = React.useState(false);
-  const { data: session, status } = useSession();
+  const { data, status } = useSession();
+  const [loading, setLoading] = React.useState(true);
 
-  switch (status) {
-    case "authenticated":
-      return (
-        <div>
-          {!collapsed && <Sidebar />}
+  React.useEffect(() => {
+    switch (status) {
+      case "loading":
+        setLoading(true);
+        break;
+
+      case "authenticated":
+        setLoading(false);
+        break;
+
+      case "unauthenticated":
+        signIn();
+        break;
+
+      default:
+        break;
+    }
+  }, [status]);
+
+  return (
+    !loading && (
+      <div>
+        {!collapsed && <Sidebar />}
+        <div
+          style={{
+            background: color.background,
+            minHeight: "100vh",
+            marginLeft: !collapsed ? "212px" : "0px",
+          }}
+        >
+          <Header
+            name={data.user.name}
+            setCollapsed={() => {
+              setCollapsed(!collapsed);
+            }}
+          />
           <div
             style={{
-              background: color.background,
-              minHeight: "100vh",
-              marginLeft: !collapsed ? "212px" : "0px",
+              paddingTop: "40px",
+              paddingLeft: "20px",
+              paddingRight: "20px",
+              paddingBottom: "20px",
             }}
           >
-            <Header
-              name={session.user.name}
-              setCollapsed={() => {
-                setCollapsed(!collapsed);
-              }}
-            />
-            <div
-              style={{
-                paddingTop: "40px",
-                paddingLeft: "20px",
-                paddingRight: "20px",
-                paddingBottom: "20px",
-              }}
-            >
-              {children}
-            </div>
+            {children}
           </div>
         </div>
-      );
-
-    case "loading":
-      return <p>loading...</p>;
-
-    case "unauthenticated":
-      signIn();
-      break;
-    default:
-      break;
-  }
+      </div>
+    )
+  );
 }
