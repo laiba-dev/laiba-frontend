@@ -1,8 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
-import Text from '../Typography/Text'
+import { Text } from '../Typography'
 import DropdownItem from './DropdownItem'
 import { signOut } from 'next-auth/react'
+import { shadow } from '../Color'
 
 export default function Header({ setCollapsed, name }) {
     const [showDropDown, setShowDropDown] = React.useState(false)
@@ -11,7 +12,7 @@ export default function Header({ setCollapsed, name }) {
             width: '100%',
             height: '57px',
             background: 'white',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
+            boxShadow: shadow,
             display: 'flex',
             flexDirection: 'row',
             paddingLeft: '20px',
@@ -23,7 +24,9 @@ export default function Header({ setCollapsed, name }) {
             <div style={{ position: 'relative', display: 'inline-block' }}
                 onMouseEnter={() => setShowDropDown(true)}
                 onMouseLeave={() => setShowDropDown(false)}>
-                <div style={{ padding: '20px', cursor: 'pointer' }}><Text>Hai, {name}</Text></div>
+                <div style={{ padding: '20px', cursor: 'pointer' }}>
+                    <Text>Hai, {name}</Text>
+                </div>
                 <div style={{
                     display: showDropDown ? 'block' : 'none',
                     position: 'absolute',
@@ -31,7 +34,9 @@ export default function Header({ setCollapsed, name }) {
                     minWidth: '160px',
                     borderRadius: '4px',
                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
-                    zIndex: '1'
+                    zIndex: '1',
+                    paddingTop: '4px',
+                    paddingBottom: '4px'
                 }}>
                     <DropdownItem text="Logout" action={() => { signOut() }} />
                 </div>

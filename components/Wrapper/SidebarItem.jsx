@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Text from '../Typography/Text'
+import { color } from '../Color'
 
 export default function SidebarItem({ icon, text, url, active, onSelected }) {
     return (
@@ -11,7 +12,7 @@ export default function SidebarItem({ icon, text, url, active, onSelected }) {
                 flexDirection: 'row',
                 width: '100%',
                 padding: '10px',
-                background: active && '#18BBEE',
+                background: active && color.secondary,
                 cursor: 'pointer'
             }}
                 onClick={onSelected}

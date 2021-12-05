@@ -1,5 +1,6 @@
 import { signIn, useSession } from 'next-auth/react'
 import React from 'react'
+import { color } from '../Color'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
@@ -12,7 +13,7 @@ export default function Wrapper({ children }) {
             return (<div>
                 {!collapsed && (<Sidebar />)}
                 <div style={{
-                    background: '#F8F9FF',
+                    background: color.background,
                     minHeight: '100vh',
                     marginLeft: !collapsed ? '212px' : '0px'
                 }}>

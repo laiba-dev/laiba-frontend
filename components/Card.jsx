@@ -1,4 +1,5 @@
 import React from 'react'
+import { shadow } from './Color'
 
 export default function Card({ children }) {
     return (
@@ -8,7 +9,7 @@ export default function Card({ children }) {
             padding: '20px',
             borderRadius: '4px',
             background: 'white',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)'
+            boxShadow: shadow
         }}>
             {children}
         </div>

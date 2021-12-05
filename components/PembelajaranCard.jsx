@@ -14,7 +14,9 @@ export default function PembelajaranCard({ id, image, title, desc }) {
                 alignItems: 'center',
                 textAlign: 'center'
             }}>
-                <div><Image src={image} alt="Logo Pembelajaran" width="156px" height="156px" /></div>
+                <div>
+                    <Image src={image} alt="Logo Pembelajaran" width="156px" height="156px" />
+                </div>
                 <Title>{title}</Title>
                 <Text color="#808080">{desc}</Text>
             </div>

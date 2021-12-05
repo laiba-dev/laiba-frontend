@@ -2,6 +2,7 @@ import React from 'react'
 import Heading1 from '../Typography/Heading1'
 import SidebarItem from './SidebarItem'
 import Text from '../Typography/Text'
+import { color } from '../Color'
 
 export default function Sidebar() {
     const [selected, setSelected] = React.useState(1)
@@ -14,7 +15,7 @@ export default function Sidebar() {
             height: '100%',
             left: '0',
             top: '0',
-            background: '#08184E',
+            background: color.primary,
             color: 'white'
         }}>
             <div style={{ marginBottom: '20px', padding: '20px' }}>

@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Text from '../Typography/Text'
 
 export default function DropdownItem({ text, action }) {
+    const [hovered, setHovered] = useState(false)
+
     return (
-        <div style={{ padding: '20px', cursor: 'pointer' }} onClick={action}>
+        <div style={{
+            padding: '10px',
+            cursor: 'pointer',
+            backgroundColor: hovered && '#F4F4F4'
+        }}
+            onClick={action}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}>
             <Text>{text}</Text>
         </div>
     )
