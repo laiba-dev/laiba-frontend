@@ -3,6 +3,7 @@ import router from "next/router";
 import React from "react";
 import { color } from "../Color";
 import Header from "./Header";
+import LoadingScreen from "./LoadingScreen";
 import Sidebar from "./Sidebar";
 
 const publicPaths = ["/auth/login", "/auth/register", "/"];
@@ -16,7 +17,6 @@ export default function LayoutWrapper({ children }) {
   React.useEffect(() => {
     const authCheck = () => {
       const route = router.asPath.split("?", 1)[0];
-      console.log("Auth Check " + status);
       if (!publicPaths.includes(route)) {
         setUseTemplate(true);
         switch (status) {
@@ -49,7 +49,7 @@ export default function LayoutWrapper({ children }) {
   }, [status]);
 
   return loading ? (
-    <p>Loading...</p>
+    <LoadingScreen />
   ) : useTemplate ? (
     <div>
       {!collapsed && <Sidebar />}
@@ -57,7 +57,7 @@ export default function LayoutWrapper({ children }) {
         style={{
           background: color.background,
           minHeight: "100vh",
-          marginLeft: !collapsed ? "212px" : "0px",
+          marginLeft: !collapsed ? "15vw" : "0px",
         }}
       >
         <Header
@@ -66,16 +66,7 @@ export default function LayoutWrapper({ children }) {
             setCollapsed(!collapsed);
           }}
         />
-        <div
-          style={{
-            paddingTop: "40px",
-            paddingLeft: "20px",
-            paddingRight: "20px",
-            paddingBottom: "20px",
-          }}
-        >
-          {children}
-        </div>
+        <div className="container">{children}</div>
       </div>
     </div>
   ) : (

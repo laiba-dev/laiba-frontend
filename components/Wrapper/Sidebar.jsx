@@ -1,7 +1,6 @@
 import React from "react";
 import SidebarItem from "./SidebarItem";
 import { Text, Heading1 } from "../Typography";
-import { color } from "../Color";
 import { connect } from "react-redux";
 import { setSelectedMenu } from "../../utils/redux/actions/MenuActions";
 

@@ -14,8 +14,15 @@ export default function SidebarItem({ icon, text, url, active, onSelected }) {
         }}
         onClick={onSelected}
       >
-        <Image src={icon} alt="Sidebar Item Image" width="24px" height="24px" />
-        <div style={{ marginLeft: "23px" }}>
+        <div style={{ height: "24px" }}>
+          <Image
+            src={icon}
+            alt="Sidebar Item Image"
+            width="24px"
+            height="24px"
+          />
+        </div>
+        <div style={{ marginLeft: "20px" }}>
           <Text color="white">{text}</Text>
         </div>
       </div>
