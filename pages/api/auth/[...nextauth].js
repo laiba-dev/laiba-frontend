@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import router from "next/router";
 
 export default NextAuth({
   // Configure one or more authentication providers
@@ -11,6 +12,14 @@ export default NextAuth({
     // ...add more providers here
   ],
   callbacks: {
+    // signIn: async ({ user, account, profile }) => {
+    //   console.log(profile);
+    //   if (profile.login !== "mirfanrafif") {
+    //     router.push("/register");
+    //     return false;
+    //   }
+    //   return true;
+    // },
     session: async ({ session, token }) => {
       const response = await fetch("https://api.github.com/user", {
         method: "GET",
@@ -39,8 +48,8 @@ export default NextAuth({
       return token;
     },
   },
-  // pages: {
-  //     signIn: '/auth/login',
-  // },
+  pages: {
+    signIn: "/auth/login",
+  },
   secret: process.env.SECRET,
 });
