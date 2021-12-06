@@ -6,10 +6,6 @@ import { color } from "../../components/Color";
 import router from "next/router";
 
 export default function SignIn({ providers }) {
-  const [callbackUrl, setCallbackUrl] = React.useState(
-    router.query.callbackUrl
-  );
-
   return (
     <div
       style={{
@@ -26,7 +22,9 @@ export default function SignIn({ providers }) {
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <Button
-            onClick={() => signIn(provider.id, { callbackUrl: callbackUrl })}
+            onClick={() =>
+              signIn(provider.id, { callbackUrl: router.query.callbackUrl })
+            }
             text={"Login dengan " + provider.id}
           />
         </div>
