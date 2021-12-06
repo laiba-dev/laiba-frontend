@@ -2,7 +2,7 @@ import router from "next/router";
 import React from "react";
 import Button from "../components/Button";
 import { color } from "../components/Color";
-import Link from "next/link";
+import Image from "next/image";
 import { Heading2, Heading3, Title } from "../components/Typography";
 import Header from "../components/Wrapper/Header";
 import { useSession } from "next-auth/react";
@@ -48,10 +48,11 @@ export default function Index() {
                 />
               </div>
             </div>
-            <img
+            <Image
               src="/images/undraw_online_learning_re_qw08.svg"
               alt="branding"
-              style={{ width: "400px", height: "auto" }}
+              width={400}
+              height={400}
             />
           </div>
         </div>

@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar";
 
 const publicPaths = ["/auth/login", "/auth/register", "/"];
 
-export default function Wrapper({ children }) {
+export default function LayoutWrapper({ children }) {
   const [collapsed, setCollapsed] = React.useState(false);
   const { data, status } = useSession();
   const [loading, setLoading] = React.useState(true);
