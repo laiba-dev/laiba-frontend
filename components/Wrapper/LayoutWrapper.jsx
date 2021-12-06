@@ -57,7 +57,7 @@ export default function LayoutWrapper({ children }) {
         style={{
           background: color.background,
           minHeight: "100vh",
-          marginLeft: !collapsed ? "15vw" : "0px",
+          marginLeft: !collapsed ? "212px" : "0px",
         }}
       >
         <Header
