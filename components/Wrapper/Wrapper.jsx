@@ -5,7 +5,7 @@ import { color } from "../Color";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const publicPaths = ["/auth/login"];
+const publicPaths = ["/auth/login", "/auth/register", "/welcome"];
 
 export default function Wrapper({ children }) {
   const [collapsed, setCollapsed] = React.useState(false);
@@ -15,7 +15,6 @@ export default function Wrapper({ children }) {
 
   React.useEffect(() => {
     const route = router.asPath.split("?", 1)[0];
-    console.log(route);
     if (publicPaths.findIndex((path) => route == path) == -1) {
       setUseTemplate(true);
       switch (status) {
