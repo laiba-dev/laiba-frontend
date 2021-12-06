@@ -15,7 +15,7 @@ export default function Sidebar() {
       <div>
         <SidebarItem
           icon="/images/bx_bxs-home.png"
-          url="/"
+          url="/dashboard"
           text="Dashboard"
           active={selected == 1}
           onSelected={() => setSelected(1)}

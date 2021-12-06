@@ -5,7 +5,7 @@ import { color } from "../Color";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const publicPaths = ["/auth/login", "/auth/register", "/welcome"];
+const publicPaths = ["/auth/login", "/auth/register", "/"];
 
 export default function Wrapper({ children }) {
   const [collapsed, setCollapsed] = React.useState(false);
@@ -14,64 +14,71 @@ export default function Wrapper({ children }) {
   const [useTemplate, setUseTemplate] = React.useState(true);
 
   React.useEffect(() => {
-    const route = router.asPath.split("?", 1)[0];
-    if (publicPaths.findIndex((path) => route == path) == -1) {
-      setUseTemplate(true);
-      switch (status) {
-        case "loading":
-          setLoading(true);
-          break;
+    const authCheck = () => {
+      const route = router.asPath.split("?", 1)[0];
+      console.log("Auth Check " + status);
+      if (!publicPaths.includes(route)) {
+        setUseTemplate(true);
+        switch (status) {
+          case "authenticated":
+            setLoading(false);
+            break;
 
-        case "authenticated":
-          setLoading(false);
-          break;
+          case "unauthenticated":
+            signIn();
+            break;
 
-        case "unauthenticated":
-          signIn();
-          break;
-
-        default:
-          break;
+          default:
+            break;
+        }
+      } else {
+        setLoading(false);
+        setUseTemplate(false);
       }
-    } else {
-      setLoading(false);
-      setUseTemplate(false);
-    }
+    };
+
+    authCheck();
+
+    router.events.on("routeChangeStart", () => setLoading(true));
+    router.events.on("routeChangeComplete", () => authCheck());
+
+    return () => {
+      router.events.off("routeChangeStart", () => setLoading(true));
+      router.events.off("routeChangeComplete", () => authCheck());
+    };
   }, [status]);
 
-  return !loading ? (
-    useTemplate ? (
-      <div>
-        {!collapsed && <Sidebar />}
+  return loading ? (
+    <p>Loading...</p>
+  ) : useTemplate ? (
+    <div>
+      {!collapsed && <Sidebar />}
+      <div
+        style={{
+          background: color.background,
+          minHeight: "100vh",
+          marginLeft: !collapsed ? "212px" : "0px",
+        }}
+      >
+        <Header
+          name={data.user.name}
+          setCollapsed={() => {
+            setCollapsed(!collapsed);
+          }}
+        />
         <div
           style={{
-            background: color.background,
-            minHeight: "100vh",
-            marginLeft: !collapsed ? "212px" : "0px",
+            paddingTop: "40px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            paddingBottom: "20px",
           }}
         >
-          <Header
-            name={data.user.name}
-            setCollapsed={() => {
-              setCollapsed(!collapsed);
-            }}
-          />
-          <div
-            style={{
-              paddingTop: "40px",
-              paddingLeft: "20px",
-              paddingRight: "20px",
-              paddingBottom: "20px",
-            }}
-          >
-            {children}
-          </div>
+          {children}
         </div>
       </div>
-    ) : (
-      children
-    )
+    </div>
   ) : (
-    <p>loading...</p>
+    children
   );
 }
