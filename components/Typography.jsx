@@ -1,29 +1,21 @@
 export function Text({ color = "#202020", children }) {
   return (
     <div
+      className="text"
       style={{
         color: color,
-        fontStyle: "normal",
-        fontWeight: "400",
-        fontSize: "14px",
-        lineHeight: "21px",
-        margin: "0px",
       }}
     >
       {children}
     </div>
   );
 }
-export function Title({ children }) {
+export function Title({ color = "#202020", children }) {
   return (
     <div
+      className="title"
       style={{
-        color: "#202020",
-        fontStyle: "normal",
-        fontWeight: "500",
-        fontSize: "16px",
-        lineHeight: "24px",
-        margin: "0px",
+        color: color,
       }}
     >
       {children}
@@ -31,15 +23,12 @@ export function Title({ children }) {
   );
 }
 
-export function Heading3({ children }) {
+export function Heading3({ color = "#202020", children }) {
   return (
     <div
+      className="heading-3"
       style={{
-        color: "#202020",
-        fontStyle: "normal",
-        fontWeight: "600",
-        fontSize: "20px",
-        lineHeight: "30px",
+        color: color,
       }}
     >
       {children}
@@ -50,12 +39,9 @@ export function Heading3({ children }) {
 export function Heading2({ color = "#202020", children }) {
   return (
     <div
+      className="heading-2"
       style={{
         color: color,
-        fontStyle: "normal",
-        fontWeight: "600",
-        fontSize: "32px",
-        lineHeight: "48px",
       }}
     >
       {children}
@@ -65,12 +51,9 @@ export function Heading2({ color = "#202020", children }) {
 export function Heading1({ color = "#202020", children }) {
   return (
     <div
+      className="heading-1"
       style={{
         color: color,
-        fontStyle: "normal",
-        fontWeight: "600",
-        fontSize: "48px",
-        lineHeight: "72px",
       }}
     >
       {children}

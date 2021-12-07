@@ -6,7 +6,9 @@ export default function KriteriaItem({ kriteria }) {
   return (
     <div className="kriteria-item">
       <Image
-        src="/images/icon-check.svg"
+        src={
+          kriteria.success ? "/images/icon-check.svg" : "/images/icon-cross.svg"
+        }
         alt="Kriteria Sukses"
         width={24}
         height={24}

@@ -11,12 +11,7 @@ export default function Pembelajaran({ listFramework }) {
       </div>
       <div className="pembelajaran-list">
         {listFramework.map((value) => (
-          <div
-            onClick={() => router.push("/materi?pembelajaranid=" + value.id)}
-            key={value.id}
-          >
-            <PembelajaranCard key={value.id} pembelajaran={value} />
-          </div>
+          <PembelajaranCard key={value.id} pembelajaran={value} />
         ))}
       </div>
     </div>

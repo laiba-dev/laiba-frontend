@@ -4,6 +4,7 @@ import { Text, Title } from "./Typography";
 import Image from "next/image";
 import { color } from "./Color";
 import KriteriaItem from "./KriteriaItem";
+import DetailSubmissionCard from "./DetailSubmissionCard";
 
 export default function SubmissionCard({ submission }) {
   const [showDetail, setShowDetail] = React.useState(false);
@@ -45,7 +46,10 @@ export default function SubmissionCard({ submission }) {
           </div>
           <div
             onClick={() => setShowDetail(!showDetail)}
-            style={{ transform: showDetail && "rotate(180deg)" }}
+            style={{
+              transform: showDetail && "rotate(180deg)",
+              cursor: "pointer",
+            }}
           >
             <Image
               src="/images/icon-down.svg"
@@ -56,28 +60,7 @@ export default function SubmissionCard({ submission }) {
           </div>
         </div>
       </Card>
-      {showDetail && (
-        <Card>
-          <div className="detail-grid">
-            <div className="submission-time">
-              <Text color={color.text}>Waktu Mulai Mengerjakan</Text>
-              <Text>27 November 2021</Text>
-              <Text color={color.text}>Waktu Pengumpulan</Text>
-              <Text>27 November 2021</Text>
-              <Text color={color.text}>Waktu Pengerjaan</Text>
-              <Text>1 Hari 20 Menit</Text>
-            </div>
-            <div className="submission-time">
-              <Text color={color.text}>Kriteria</Text>
-              <div>
-                {submission.log_test.map((log) => (
-                  <KriteriaItem kriteria={log} key={log.id} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </Card>
-      )}
+      {showDetail && <DetailSubmissionCard submission={submission} />}
     </div>
   );
 }
