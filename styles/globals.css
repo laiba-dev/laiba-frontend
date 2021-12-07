@@ -95,9 +95,10 @@ a {
 }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   width: 212px;
-  min-height: 100vh;
+  /* min-height: 100%; */
+  height: 100%;
   left: 0;
   top: 0;
   background-color: #08184e;
@@ -111,4 +112,48 @@ a {
   padding: 10px;
   align-items: center;
   cursor: pointer;
+}
+.pembelajaran-list {
+  display: grid;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+.submission-time {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 20px;
+}
+
+.kriteria-item {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+.dashboard-stats {
+  display: grid;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+@media (min-width: 900px) {
+  .pembelajaran-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

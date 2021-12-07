@@ -1,6 +1,7 @@
 import React from "react";
 import PembelajaranCard from "../components/PembelajaranCard";
 import { Heading3 } from "../components/Typography";
+import router from "next/router";
 
 export default function Pembelajaran({ listFramework }) {
   return (
@@ -8,23 +9,15 @@ export default function Pembelajaran({ listFramework }) {
       <div style={{ marginBottom: "20px" }}>
         <Heading3>Pilih Pembelajaran</Heading3>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "auto auto",
-          rowGap: "20px",
-          columnGap: "20px",
-        }}
-      >
+      <div className="pembelajaran-list">
         {listFramework.map((value) => (
-          <PembelajaranCard
+          <div
+            onClick={() => router.push("/materi?pembelajaranid=" + value.id)}
             key={value.id}
-            image={value.urlGambar}
-            title={value.judul}
-            desc={value.deskripsi}
-          />
+          >
+            <PembelajaranCard key={value.id} pembelajaran={value} />
+          </div>
         ))}
-        ;
       </div>
     </div>
   );

@@ -20,14 +20,7 @@ export default function Home() {
         <div style={{ marginBottom: "20px" }}>
           <Heading3>Selamat Datang, {session.user.name}</Heading3>
         </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-            columnGap: "20px ",
-          }}
-        >
+        <div className="dashboard-stats">
           <Card>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <div
@@ -70,15 +63,15 @@ export default function Home() {
                 <Text color={color.text}>Materi dikerjakan</Text>
               </div>
               <div style={{ flex: "1" }}>
-                <Heading2>1</Heading2>
+                <Heading2>2</Heading2>
                 <Text color={color.text}>Praktikum dikerjakan</Text>
               </div>
               <div style={{ flex: "1" }}>
-                <Heading2>1</Heading2>
+                <Heading2>4</Heading2>
                 <Text color={color.text}>Percobaan dilakukan</Text>
               </div>
               <div style={{ flex: "1" }}>
-                <Heading2>1</Heading2>
+                <Heading2>70%</Heading2>
                 <Text color={color.text}>Praktikum berhasil dikerjakan</Text>
               </div>
             </div>

@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import { color } from "./Color";
 import Button from "../components/Button";
 import { Text, Title } from "./Typography";
+import router from "next/router";
 
 export default function MateriCard({ materi }) {
   return (
@@ -21,7 +22,12 @@ export default function MateriCard({ materi }) {
             <Text color={color.text}>{materi.deskripsi}</Text>
           </div>
           <div>
-            <Button text="Lihat Detail" />
+            <Button
+              text="Lihat Detail"
+              onClick={() => {
+                router.push("/materi/" + materi.id);
+              }}
+            />
           </div>
         </div>
       </Card>

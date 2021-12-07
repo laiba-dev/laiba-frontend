@@ -1,14 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import { Title, Text } from "./Typography";
+import Link from "next/link";
 import Card from "./Card";
 
-export default function PembelajaranCard({ id, image, title, desc }) {
+export default function PembelajaranCard({ pembelajaran }) {
   return (
     <Card>
       <div
         style={{
-          margin: "20px",
+          padding: "20px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -18,14 +19,14 @@ export default function PembelajaranCard({ id, image, title, desc }) {
         <div>
           <Image
             priority
-            src={image}
+            src={pembelajaran.urlGambar}
             alt="Logo Pembelajaran"
             width="156px"
             height="156px"
           />
         </div>
-        <Title>{title}</Title>
-        <Text color="#808080">{desc}</Text>
+        <Title>{pembelajaran.judul}</Title>
+        <Text color="#808080">{pembelajaran.deskripsi}</Text>
       </div>
     </Card>
   );
