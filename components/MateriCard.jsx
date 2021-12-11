@@ -27,6 +27,7 @@ export default function MateriCard({ materi }) {
               onClick={() => {
                 router.push("/materi/" + materi.id);
               }}
+              disabled={!materi.available}
             />
           </div>
         </div>
