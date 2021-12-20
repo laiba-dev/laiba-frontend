@@ -3,6 +3,8 @@ import Card from "./Card";
 import { Text } from "./Typography";
 import KriteriaItem from "./KriteriaItem";
 import { color } from "./Color";
+import Button from "./Button";
+import router from "next/router";
 
 export default function DetailSubmissionCard({ submission }) {
   return (
@@ -25,6 +27,18 @@ export default function DetailSubmissionCard({ submission }) {
               ))}
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "right",
+          }}
+        >
+          <Button
+            text="Lihat Detail Jawaban"
+            onClick={() => router.push("/submissions/1")}
+          />
         </div>
       </Card>
     </div>

@@ -128,7 +128,7 @@ a {
 
 .submission-time {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 1fr;
   column-gap: 20px;
 }
 
@@ -191,4 +191,8 @@ a {
   font-weight: normal;
   font-size: 14px;
   line-height: 21px;
+}
+
+.container-row {
+  margin-bottom: 20px;
 }
