@@ -6,6 +6,10 @@ import { Text, Title } from "./Typography";
 import router from "next/router";
 
 export default function MateriCard({ materi }) {
+  const goToDetail = () => {
+    router.push("/materi/" + materi.id);
+  };
+
   return (
     <div>
       <Card>
@@ -23,10 +27,12 @@ export default function MateriCard({ materi }) {
           </div>
           <div>
             <Button
-              text="Lihat Detail"
-              onClick={() => {
-                router.push("/materi/" + materi.id);
-              }}
+              text={
+                materi.available
+                  ? "Lihat detail"
+                  : "Kerjakan praktikum sebelumnya"
+              }
+              onClick={goToDetail}
               disabled={!materi.available}
             />
           </div>

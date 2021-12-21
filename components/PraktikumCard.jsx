@@ -21,9 +21,9 @@ export default function PraktikumCard({ praktikum }) {
           </div>
           <Button
             text={
-              praktikum.success ? "Kerjakan" : "Kerjakan praktikum sebelumnya"
+              praktikum.available ? "Kerjakan" : "Kerjakan praktikum sebelumnya"
             }
-            disabled={!praktikum.success}
+            disabled={!praktikum.available}
           />
         </div>
       </Card>
