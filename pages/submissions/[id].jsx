@@ -3,11 +3,33 @@ import Card from "../../components/Card";
 import { Text, Heading3, Title } from "../../components/Typography";
 import { color, shadow } from "../../components/Color";
 import TestResultCard from "../../components/TestResultCard";
+import SubmissionService from "../../utils/services/SubmissionService";
+import { useSession } from "next-auth/react";
+import Shimmer from "react-js-loading-shimmer";
 
-export default function DetailSubmission({ testResult }) {
-  // React.useEffect(() => {
-  //   console.log(testResult);
-  // }, []);
+const testResultInitialState = {
+  pembelajaran: {
+    praktikum: {},
+  },
+  log_test: [],
+  // runtime_error: [],
+};
+
+export default function DetailSubmission({ logPembelajaranId }) {
+  const [testResult, setTestResult] = React.useState(testResultInitialState);
+  const [loading, setLoading] = React.useState(true);
+  const { data: session } = useSession();
+
+  React.useEffect(() => {
+    setLoading(true);
+    SubmissionService(session.user.apiToken)
+      .getSubmission(logPembelajaranId)
+      .then((response) => {
+        const logPembelajaranData = response.data.data;
+        setTestResult(logPembelajaranData);
+        setLoading(false);
+      });
+  }, [logPembelajaranId, session.user.apiToken]);
 
   return (
     <div>
@@ -16,24 +38,36 @@ export default function DetailSubmission({ testResult }) {
       </div>
       <div className="container-row">
         <Card>
-          <div className="submission-time">
-            <Text color={color.text}>Nama Mahasiswa</Text>
-            <Text>{testResult.about.username}</Text>
-            <Text color={color.text}>Materi yang dipelajari</Text>
-            <Text>Materi 1</Text>
-            <Text color={color.text}>Praktikum yang dikerjakan</Text>
-            <Text>Hello world dengan text</Text>
-            <Text color={color.text}>Waktu Pengumpulan</Text>
-            <Text>{testResult.about.time}</Text>
-          </div>
+          {loading ? (
+            <div>
+              <Shimmer /> <br />
+              <Shimmer /> <br />
+              <Shimmer />
+            </div>
+          ) : (
+            <div className="submission-time">
+              <Text color={color.text}>Nama Mahasiswa</Text>
+              <Text>{testResult.pembelajaran.username}</Text>
+              <Text color={color.text}>Praktikum yang dikerjakan</Text>
+              <Text>{testResult.pembelajaran.praktikum.nama_praktikum}</Text>
+              <Text color={color.text}>Waktu Pengumpulan</Text>
+              <Text>{testResult.created_at}</Text>
+            </div>
+          )}
         </Card>
       </div>
-      {testResult.test.tests.map((test) => (
-        <div className="container-row">
-          <TestResultCard test={test} />
-        </div>
-      ))}
-      {testResult.test.runtime_error.length > 0 && (
+      {loading ? (
+        <Card>
+          <Shimmer />
+        </Card>
+      ) : (
+        testResult.log_test.map((test) => (
+          <div className="container-row" key={test.id}>
+            <TestResultCard test={test} />
+          </div>
+        ))
+      )}
+      {/* {testResult.runtime_error.length > 0 && (
         <div className="container-row">
           <div
             style={{
@@ -54,7 +88,7 @@ export default function DetailSubmission({ testResult }) {
                 marginTop: "20px",
               }}
             >
-              {testResult.test.runtime_error.split("\n").map((row) => (
+              {testResult.runtime_error.split("\n").map((row) => (
                 <div
                   style={{
                     fontFamily: "Fira Code",
@@ -69,46 +103,14 @@ export default function DetailSubmission({ testResult }) {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
 export function getServerSideProps(context) {
   return {
     props: {
-      testResult: {
-        about: {
-          username: "mirfanrafif",
-          project_name: "hello-flutter-mirfanrafif",
-          time: "12/20/2021, 16:07:22",
-        },
-        test: {
-          pipeline_id: "123123123",
-          success: false,
-          tests: [
-            {
-              id: 1,
-              name: "loading D:\\Mine\\Ngoding\\AndroidProjects\\hello_flutter\\test\\widget_test.dart",
-              result: "success",
-              message: null,
-            },
-            {
-              id: 3,
-              name: "Hello world text should available",
-              result: "success",
-              message: null,
-            },
-            {
-              id: 4,
-              name: "Text should change",
-              result: "error",
-              message:
-                'expected: exactly one matching node in the widget tree,\nactual: _TextFinder:<zero widgets with text "Hello, irfan" (ignoring offstage widgets)>,\nwhich: means none were found but one was expected',
-            },
-          ],
-          runtime_error: "",
-        },
-      },
+      logPembelajaranId: context.params.id,
     },
   };
 }

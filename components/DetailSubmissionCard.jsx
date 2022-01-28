@@ -13,9 +13,9 @@ export default function DetailSubmissionCard({ submission }) {
         <div className="detail-grid">
           <div className="submission-time">
             <Text color={color.text}>Waktu Mulai Mengerjakan</Text>
-            <Text>27 November 2021</Text>
+            <Text>{submission.tanggal_mulai}</Text>
             <Text color={color.text}>Waktu Pengumpulan</Text>
-            <Text>27 November 2021</Text>
+            <Text>{submission.created_at}</Text>
             <Text color={color.text}>Waktu Pengerjaan</Text>
             <Text>1 Hari 20 Menit</Text>
           </div>
@@ -37,7 +37,7 @@ export default function DetailSubmissionCard({ submission }) {
         >
           <Button
             text="Lihat Detail Jawaban"
-            onClick={() => router.push("/submissions/1")}
+            onClick={() => router.push("/submissions/" + submission.id)}
           />
         </div>
       </Card>

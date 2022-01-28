@@ -7,13 +7,19 @@ export default function KriteriaItem({ kriteria }) {
     <div className="kriteria-item">
       <Image
         src={
-          kriteria.success ? "/images/icon-check.svg" : "/images/icon-cross.svg"
+          kriteria.result == "success"
+            ? "/images/icon-check.svg"
+            : "/images/icon-cross.svg"
         }
         alt="Kriteria Sukses"
         width={24}
         height={24}
       />
-      <Text>{kriteria.nama_test_case}</Text>
+      <Text>
+        {kriteria.nama_test_case.length > 50
+          ? kriteria.nama_test_case.slice(0, 50) + "..."
+          : kriteria.nama_test_case}
+      </Text>
     </div>
   );
 }

@@ -1,13 +1,13 @@
 export function Text({ color = "#202020", children }) {
   return (
-    <div
+    <p
       className="text"
       style={{
         color: color,
       }}
     >
       {children}
-    </div>
+    </p>
   );
 }
 export function Title({ color = "#202020", children }) {

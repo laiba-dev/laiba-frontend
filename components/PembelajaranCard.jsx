@@ -24,9 +24,8 @@ export default function PembelajaranCard({ pembelajaran }) {
           }}
         >
           <div>
-            <Image
-              priority
-              src={pembelajaran.urlGambar}
+            <img
+              src={pembelajaran.url_gambar}
               alt="Logo Pembelajaran"
               width="156px"
               height="156px"

@@ -4,9 +4,15 @@ import Card from "../components/Card";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { color } from "../components/Color";
+import React from "react";
 
 export default function Home() {
   const { data: session } = useSession();
+
+  React.useEffect(() => {
+    console.log(session);
+  }, []);
+
   return (
     <div
       style={{

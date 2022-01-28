@@ -1,6 +1,9 @@
+import axios from "axios";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import router from "next/router";
+import { API_URL } from "../../../utils/constants";
+import apiClient from "../../../utils/services/apiClient";
 
 export default NextAuth({
   // Configure one or more authentication providers
@@ -12,14 +15,21 @@ export default NextAuth({
     // ...add more providers here
   ],
   callbacks: {
-    // signIn: async ({ user, account, profile }) => {
-    //   console.log(profile);
-    //   if (profile.login !== "mirfanrafif") {
-    //     router.push("/register");
-    //     return false;
-    //   }
-    //   return true;
-    // },
+    signIn: async ({ user, account, profile }) => {
+      try {
+        let csrfTokenResponse = await apiClient.get("/sanctum/csrf-cookie");
+
+        let loginResponse = await apiClient.post("/api/login", {
+          username: profile.login,
+        });
+
+        account.laiba_api_token = loginResponse.data.data.token;
+        return true;
+      } catch (error) {
+        console.log(error);
+        return "/auth/register";
+      }
+    },
     session: async ({ session, token }) => {
       const response = await fetch("https://api.github.com/user", {
         method: "GET",
@@ -34,6 +44,7 @@ export default NextAuth({
         ...session.user,
         login: userData.login,
         accessToken: token.accessToken,
+        apiToken: token.laiba_api_token,
       };
 
       return {
@@ -44,6 +55,7 @@ export default NextAuth({
     jwt: async ({ account, token }) => {
       if (account) {
         token.accessToken = account.access_token;
+        token.laiba_api_token = account.laiba_api_token;
       }
       return token;
     },

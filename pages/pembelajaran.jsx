@@ -19,13 +19,13 @@ export default function Pembelajaran({ listFramework }) {
 }
 
 export async function getServerSideProps(context) {
-  const frameworks = await fetch(`${process.env.API_URL}/api/framework`, {
+  const frameworks = await fetch(`${process.env.API_URL}/framework`, {
     method: "GET",
   });
   const data = await frameworks.json();
   return {
     props: {
-      listFramework: data,
+      listFramework: data.data,
     },
   };
 }
