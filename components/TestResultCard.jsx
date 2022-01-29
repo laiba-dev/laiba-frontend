@@ -55,7 +55,7 @@ export default function TestResultCard({ test }) {
           style={{ padding: "20px", background: "#FFDBDB", marginTop: "20px" }}
         >
           {test.message.split("\n").map((row) => (
-            <Text>{row}</Text>
+            <Text key={row.id}>{row}</Text>
           ))}
         </div>
       )}

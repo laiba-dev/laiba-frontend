@@ -9,10 +9,6 @@ import React from "react";
 export default function Home() {
   const { data: session } = useSession();
 
-  React.useEffect(() => {
-    console.log(session);
-  }, []);
-
   return (
     <div
       style={{

@@ -88,8 +88,9 @@ export default function DetailSubmission({ logPembelajaranId }) {
                 marginTop: "20px",
               }}
             >
-              {testResult.runtime_error.split("\n").map((row) => (
+              {testResult.runtime_error.split("\n").map((row, index) => (
                 <div
+                  key={index}
                   style={{
                     fontFamily: "Fira Code",
                     fontSize: "12px",
