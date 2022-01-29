@@ -12,7 +12,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: flutter-autograding
+  IMAGE_NAME: laiba-frontend
 
 jobs:
   # Push image to GitHub Packages.
