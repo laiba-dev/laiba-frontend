@@ -65,7 +65,7 @@ export default function Home() {
                 <Text color={color.text}>Materi dikerjakan</Text>
               </div>
               <div style={{ flex: "1" }}>
-                <Heading2>2</Heading2>
+                <Heading2>1</Heading2>
                 <Text color={color.text}>Praktikum dikerjakan</Text>
               </div>
               <div style={{ flex: "1" }}>
