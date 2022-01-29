@@ -2,6 +2,7 @@ import React from "react";
 import PembelajaranCard from "../components/PembelajaranCard";
 import { Heading3 } from "../components/Typography";
 import router from "next/router";
+import { API_URL } from "../utils/constants";
 
 export default function Pembelajaran({ listFramework }) {
   return (
@@ -19,7 +20,7 @@ export default function Pembelajaran({ listFramework }) {
 }
 
 export async function getServerSideProps(context) {
-  const frameworks = await fetch(`${process.env.API_URL}/framework`, {
+  const frameworks = await fetch(`${API_URL}/api/framework`, {
     method: "GET",
   });
   const data = await frameworks.json();

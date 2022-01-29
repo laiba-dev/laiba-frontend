@@ -17,7 +17,7 @@ export default NextAuth({
   callbacks: {
     signIn: async ({ user, account, profile }) => {
       try {
-        let csrfTokenResponse = await apiClient.get("/sanctum/csrf-cookie");
+        await apiClient.get("/sanctum/csrf-cookie");
 
         let loginResponse = await apiClient.post("/api/login", {
           username: profile.login,
