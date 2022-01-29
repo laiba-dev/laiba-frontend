@@ -12,7 +12,7 @@ const testResultInitialState = {
     praktikum: {},
   },
   log_test: [],
-  // runtime_error: [],
+  runtime_error: "",
 };
 
 export default function DetailSubmission({ logPembelajaranId }) {
@@ -67,7 +67,7 @@ export default function DetailSubmission({ logPembelajaranId }) {
           </div>
         ))
       )}
-      {/* {testResult.runtime_error.length > 0 && (
+      {testResult.runtime_error.length > 0 && (
         <div className="container-row">
           <div
             style={{
@@ -103,7 +103,7 @@ export default function DetailSubmission({ logPembelajaranId }) {
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 }
