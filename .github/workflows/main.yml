@@ -34,4 +34,4 @@ jobs:
         run: echo "${{ secrets.MY_ACTION_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push image
-        run: docker push https://github.com/laiba-dev/laiba-frontend.git
+        run: docker push ghcr.io/laiba-dev/laiba-frontend:latest
