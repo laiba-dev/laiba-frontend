@@ -1,62 +1,102 @@
-import router from "next/router";
-import React from "react";
-import Button from "../components/Button";
-import { color } from "../components/Color";
-import Image from "next/image";
-import { Heading2, Heading3, Title } from "../components/Typography";
-import Header from "../components/Wrapper/Header";
-import { useSession } from "next-auth/react";
+import { Heading3, Heading2, Text, Title } from "../components/Typography";
 
-export default function Index() {
-  const { data, status } = useSession();
-  const [showContent, setShowContent] = React.useState(false);
-  React.useEffect(() => {
-    if (status == "authenticated") {
-      router.push("/dashboard");
-    } else if (status == "unauthenticated") {
-      setShowContent(true);
+import Card from "../components/Card";
+import { useSession, signIn } from "next-auth/react";
+import { color } from "../components/Color";
+import React from "react";
+
+export default function Home() {
+  const { data: session, status } = useSession();
+  const [loading, setLoading] = React.useState(false);
+
+  React.useState(() => {
+    console.log(status);
+    switch (status) {
+      case "loading":
+        setLoading(true);
+        break;
+      case "authenticated":
+        setLoading(false);
+        break;
+      case "unauthenticated":
+        signIn();
+        break;
     }
   }, [status]);
 
-  return (
-    showContent && (
-      <div style={{ backgroundColor: color.background, minHeight: "100vh" }}>
-        <Header />
-        <div style={{ maxWidth: "1200px", margin: "auto" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              columnGap: "80px",
-            }}
-          >
-            <div
-              style={{
-                padding: "200px 40px",
-                display: "flex",
-                flexDirection: "column",
-                rowGap: "8px",
-              }}
-            >
-              <Heading2>Selamat Datang di LAIBA</Heading2>
-              <Title>Learning Application in Balanced Assessment</Title>
-              <div>
-                <Button
-                  text="Mulai Belajar"
-                  onClick={() => router.push("/dashboard")}
+  return loading ? (
+    <></>
+  ) : (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        rowGap: "40px",
+      }}
+    >
+      <div>
+        <div style={{ marginBottom: "20px" }}>
+          <Heading3>Selamat Datang, {session.user.name}</Heading3>
+        </div>
+        <div className="dashboard-stats">
+          <Card>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div
+                style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+              >
+                <img
+                  src={session.user.image}
+                  alt="Foto Profil"
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "50%",
+                  }}
                 />
               </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginLeft: "20px",
+                }}
+              >
+                <Title>{session.user.name}</Title>
+                <Text color={color.text}>D-IV Teknik Informatika</Text>
+                <Text color={color.text}>1841720176</Text>
+              </div>
             </div>
-            <Image
-              src="/images/undraw_online_learning_re_qw08.svg"
-              alt="branding"
-              width={400}
-              height={400}
-            />
-          </div>
+          </Card>
+          <Card>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                textAlign: "center",
+                columnGap: "20px",
+              }}
+            >
+              <div style={{ flex: "1" }}>
+                <Heading2>1</Heading2>
+                <Text color={color.text}>Materi dikerjakan</Text>
+              </div>
+              <div style={{ flex: "1" }}>
+                <Heading2>1</Heading2>
+                <Text color={color.text}>Praktikum dikerjakan</Text>
+              </div>
+              <div style={{ flex: "1" }}>
+                <Heading2>4</Heading2>
+                <Text color={color.text}>Percobaan dilakukan</Text>
+              </div>
+              <div style={{ flex: "1" }}>
+                <Heading2>70%</Heading2>
+                <Text color={color.text}>Praktikum berhasil dikerjakan</Text>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
-    )
+    </div>
   );
 }

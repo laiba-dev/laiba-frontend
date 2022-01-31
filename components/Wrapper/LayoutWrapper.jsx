@@ -6,7 +6,7 @@ import Header from "./Header";
 import LoadingScreen from "./LoadingScreen";
 import Sidebar from "./Sidebar";
 
-const publicPaths = ["/auth/login", "/auth/register", "/"];
+const publicPaths = ["/auth/login", "/auth/register"];
 
 export default function LayoutWrapper({ children }) {
   const [collapsed, setCollapsed] = React.useState(false);
@@ -38,14 +38,6 @@ export default function LayoutWrapper({ children }) {
     };
 
     authCheck();
-
-    router.events.on("routeChangeStart", () => setLoading(true));
-    router.events.on("routeChangeComplete", () => authCheck());
-
-    return () => {
-      router.events.off("routeChangeStart", () => setLoading(true));
-      router.events.off("routeChangeComplete", () => authCheck());
-    };
   }, [status]);
 
   return loading ? (

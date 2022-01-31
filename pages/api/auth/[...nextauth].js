@@ -27,7 +27,7 @@ export default NextAuth({
         return true;
       } catch (error) {
         console.log(error);
-        return "/auth/register";
+        return "/auth/register?username=" + profile.login;
       }
     },
     session: async ({ session, token }) => {

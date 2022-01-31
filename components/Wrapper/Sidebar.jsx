@@ -14,7 +14,7 @@ export function Sidebar({ menu, setSelectedMenu }) {
       <div>
         <SidebarItem
           icon="/images/bx_bxs-home.png"
-          url="/dashboard"
+          url="/"
           text="Dashboard"
           active={menu.selectedKeys == 1}
           onSelected={() => setSelectedMenu(1)}

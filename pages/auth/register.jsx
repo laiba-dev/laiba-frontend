@@ -1,3 +1,4 @@
+import { signIn, useSession } from "next-auth/react";
 import React from "react";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
@@ -5,14 +6,32 @@ import { color } from "../../components/Color";
 import Divider from "../../components/Divider";
 import FormField from "../../components/FormField";
 import { Text, Title } from "../../components/Typography";
+import apiClient from "../../utils/services/apiClient";
 
-export default function Register() {
+export default function Register({ username }) {
   const [userData, setUserData] = React.useState({
     nim: "",
     nama: "",
     prodi: "",
-    username: "mirfanrafif",
+    username: username,
   });
+
+  const register = () => {
+    apiClient
+      .post("/api/register", userData)
+      .then((response) => {
+        if (response.status >= 400) {
+          alert(response.data.data);
+        } else {
+          signIn(null, {
+            callbackUrl: "/",
+          });
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   return (
     <div
@@ -65,9 +84,22 @@ export default function Register() {
             placeholder="Username Github"
             disabled
           />
-          <Button text="Daftar" onClick={() => {}} />
+          <Button
+            text="Daftar"
+            onClick={() => {
+              register();
+            }}
+          />
         </Card>
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      username: context.query.username,
+    },
+  };
 }
